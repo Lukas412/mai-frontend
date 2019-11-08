@@ -1,0 +1,62 @@
+<div class="app-background bg">
+
+  <mat-toolbar class="app-toolbar" color="primary">
+    <mat-toolbar-row>
+
+      <button mat-icon-button class="app-toolbar-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="app-toolbar-title">MAI</span>
+      <span class="app-toolbar-desc">room control</span>
+
+      <div class="flex"></div>
+
+      <button mat-stroked-button class="app-toolbar-button">Plugins</button>
+      <button mat-stroked-button class="app-toolbar-button">Settings</button>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="app-plugins fg">
+    <ng-container *ngFor="let plugin of getPlugins()">
+      <mat-expansion-panel class="app-plugins-plugin" [(expanded)]="plugin.expanded">
+
+        <mat-expansion-panel-header>
+          <mat-panel-title class="app-plugins-plugin-title">{{ plugin.displayName }}</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-slide-toggle [checked]="true">Plugin is active</mat-slide-toggle>
+
+        <div class="app-plugins-plugin-commands" *ngIf="plugin.commands.length !== 0">
+
+          <p class="app-plugins-plugin-subtitle">Commands</p>
+          <ng-container *ngFor="let command of plugin.commands">
+            <button mat-stroked-button class="app-plugins-plugin-commands-button"
+                    (click)="runCommand(plugin, command)">{{ command.name }}</button>
+          </ng-container>
+
+        </div>
+        <div *ngIf="plugin.variables.length !== 0">
+
+          <p class="app-plugins-plugin-subtitle">Variables</p>
+          <ng-container *ngFor="let variable of plugin.variables">
+
+            <mat-divider></mat-divider>
+            <div class="flex-horizontal flex-align-center flex-justify-space-between">
+
+              <p>{{ variable.name }}</p>
+              <p>{{ variable.value }}</p>
+              <button mat-stroked-button>set</button>
+
+            </div>
+
+          </ng-container>
+        </div>
+
+      </mat-expansion-panel>
+    </ng-container>
+  </div>
+
+  <router-outlet></router-outlet>
+
+</div>

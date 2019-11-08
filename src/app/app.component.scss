@@ -1,0 +1,48 @@
+@import "../var";
+
+.app {
+
+  &-background {
+    min-height: 100vh;
+  }
+
+  &-toolbar {
+    margin-bottom: $space * 4;
+
+    &-title {
+      margin-right: $space * 2;
+    }
+
+    &-desc {
+      opacity: 0.5;
+    }
+
+    &-button {
+      margin-right: $space;
+    }
+  }
+
+  &-plugins {
+
+    &-plugin {
+      margin: 0 $space * 2;
+
+      &-title {
+        text-transform: capitalize;
+        margin-bottom: $space;
+      }
+
+      &-subtitle {
+        text-transform: uppercase;
+      }
+
+      &-commands {
+        margin: $space * 2 0;
+
+        &-button {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@mixin mat-contrast($prop, $hue, $set) {
+  &-contrast {
+    #{$prop}: map_get(map_get($set, contrast), $hue);
+  }
+}
+
+@mixin mat-set($prop, $set) {
+  #{$prop}: map_get($set, 500);
+  @include mat-contrast($prop, 500, $set);
+
+  &-light {
+    #{$prop}: map_get($set, 600);
+    @include mat-contrast($prop, 600, $set);
+  }
+
+  &-dark {
+    #{$prop}: map_get($set, 400);
+    @include mat-contrast($prop, 400, $set);
+  }
+
+  &-50 {
+    #{$prop}: map_get($set, 50);
+    @include mat-contrast($prop, 50, $set);
+  }
+
+  &-100 {
+    #{$prop}: map_get($set, 100);
+    @include mat-contrast($prop, 100, $set);
+  }
+
+  &-200 {
+    #{$prop}: map_get($set, 200);
+    @include mat-contrast($prop, 200, $set);
+  }
+
+  &-300 {
+    #{$prop}: map_get($set, 300);
+    @include mat-contrast($prop, 300, $set);
+  }
+
+  &-400 {
+    #{$prop}: map_get($set, 400);
+    @include mat-contrast($prop, 400, $set);
+  }
+
+  &-500 {
+    #{$prop}: map_get($set, 500);
+    @include mat-contrast($prop, 500, $set);
+  }
+
+  &-600 {
+    #{$prop}: map_get($set, 600);
+    @include mat-contrast($prop, 600, $set);
+  }
+
+  &-700 {
+    #{$prop}: map_get($set, 700);
+    @include mat-contrast($prop, 700, $set);
+  }
+
+  &-800 {
+    #{$prop}: map_get($set, 800);
+    @include mat-contrast($prop, 800, $set);
+  }
+
+  &-900 {
+    #{$prop}: map_get($set, 900);
+    @include mat-contrast($prop, 900, $set);
+  }
+
+  &-A100 {
+    #{$prop}: map_get($set, A100);
+    @include mat-contrast($prop, A100, $set);
+  }
+
+  &-A200 {
+    #{$prop}: map_get($set, A200);
+    @include mat-contrast($prop, A200, $set);
+  }
+
+  &-A400 {
+    #{$prop}: map_get($set, A400);
+    @include mat-contrast($prop, A400, $set);
+  }
+
+  &-A700 {
+    #{$prop}: map_get($set, A700);
+    @include mat-contrast($prop, A700, $set);
+  }
+}
+
+@mixin app-theme($theme) {
+  $background: map-get($theme, background);
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .bg {
+    background-color: map_get($background, background);
+
+    &-primary {
+      @include mat-set(background-color, $primary);
+    }
+
+    &-accent {
+      @include mat-set(background-color, $accent);
+    }
+
+    &-warn {
+      @include mat-set(background-color, $primary);
+    }
+  }
+
+  .fg {
+    color: map_get(map_get($theme, foreground), base);
+
+    &-primary {
+      @include mat-set(color, $primary);
+    }
+
+    &-accent {
+      @include mat-set(color, $accent);
+    }
+
+    &-warn {
+      @include mat-set(color, $primary);
+    }
+  }
+}
+
+$app-primary: mat-palette($mat-light-blue);
+$app-accent: mat-palette($mat-amber, A200, A100, A400);
+$app-warn: mat-palette($mat-red);
+
+$app-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($app-theme);
+@include app-theme($app-theme);
